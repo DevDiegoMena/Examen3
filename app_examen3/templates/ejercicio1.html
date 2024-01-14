@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <div>
+        <h1>Formulario de Notas</h1>
+        <form id="form-notas" method="post" action="{{ url_for('ejercicio1') }}">
+            <label for="nota1"><h3>Nota 1:</h3></label>
+            <input type="text" id="nota1" name="nota1" value="{{ request.form['nota1'] if 'nota1' in request.form else '' }}" required><br>
+
+            <label for="nota2"><h3>Nota 2:</h3></label>
+            <input type="text" id="nota2" name="nota2" value="{{ request.form['nota2'] if 'nota2' in request.form else '' }}" required><br>
+
+            <label for="nota3"><h3>Nota 3:</h3></label>
+            <input type="text" id="nota3" name="nota3" value="{{ request.form['nota3'] if 'nota3' in request.form else '' }}" required><br>
+
+            <label for="asistencia"><h3>Asistencia (%):</h3></label><br>
+            <input type="text" id="asistencia" name="asistencia" value="{{ request.form['asistencia'] if 'asistencia' in request.form else '' }}" required><br>
+
+            <button type="submit">Enviar</button><br>
+
+
+        {% if promedio is defined and resultado is defined %}
+            <h3>Resultados</h3>
+            <p>Promedio: {{ promedio }}</p>
+            <p>Resultado: {{ resultado }}</p>
+        {% endif %}
+        </form>
+    </div>
+</body>
+</html>
